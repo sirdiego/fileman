@@ -1,0 +1,9 @@
+fileman - Installation:
+
+1. index.php an einen beliebigen Ort verschieben und nach belieben umbennen.
+2. Datei-Verzeichniss erstellen (wenn möglich kann dieser "data" heißen, ansonsten Schritt 4 beachten)
+3. Datei-Verzeichniss mit Schreibrechten für den Webserver versehen.
+4. In Zeile 11 der index.php den Namen des Datei-Verzeichnisses eintragen.
+5. Loslegen.
+
+Viel Spaß damit (=
