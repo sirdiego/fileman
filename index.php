@@ -40,7 +40,6 @@ function sort_list($array, $order = "filename", $asc = true) {
 	return ($asc===true?$array:array_reverse($array));
 }
 
-
 if(isset($_POST["uploadit"])) {
 	if($_POST["password"] == PASSWORD) {
 		$_SESSION["password"] = PASSWORD;
@@ -163,8 +162,8 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
 		<table>
 			<thead>
 			<tr>
-				<td><a href="index.php?sort=filename<?=($_GET["sort"]=="filename"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Name</a>/MIME-Type</td>
-				<td><a href="index.php?sort=realsize<?=($_GET["sort"]=="realsize"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Gr&ouml;&szlig;e</a>/<a href="index.php?sort=modtime<?=($_GET["sort"]=="modtime"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Datum</a></td>
+				<td><a href="index.php?sort=filename<?=(isset($_GET["search"])?"&amp;search=".$_GET["search"]:"").($_GET["sort"]=="filename"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Name</a>/MIME-Type</td>
+				<td><a href="index.php?sort=realsize<?=(isset($_GET["search"])?"&amp;search=".$_GET["search"]:"").($_GET["sort"]=="realsize"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Gr&ouml;&szlig;e</a>/<a href="index.php?sort=modtime<?=(isset($_GET["search"])?"&amp;search=".$_GET["search"]:"").($_GET["sort"]=="modtime"&&!isset($_GET["desc"])?"&amp;desc":"")?>">Datum</a></td>
 				<td>Aktionen</td>
 			</tr>
 			</thead>
