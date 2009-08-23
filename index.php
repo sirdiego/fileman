@@ -183,6 +183,6 @@ foreach($files as $file) {
 			<input type="submit" name="pasteit" value="hochladen" />
 		</fieldset>
 		</form>
-		<p>&copy; 2009 <a href="http://sirdiego.de/">diego</a> - Diese Software (<a href="http://sirdiego.ath.cx/f/fileman-1.3.1.tar.gz">herunterladen</a>) steht unter der <a href="./LICENSE.txt">MIT-Lizenz</a></p>
+		<p>&copy; 2009 <a href="http://sirdiego.de/">diego</a> - Diese Software (<a href="http://github.com/sirdiego/fileman">herunterladen</a>) steht unter der <a href="./LICENSE.txt">MIT-Lizenz</a></p>
 	</body>
 </html>
