@@ -185,3 +185,4 @@ foreach($files as $file) {
 		<p>&copy; 2009 <a href="http://sirdiego.de/">diego</a> - Diese Software (<a href="http://github.com/sirdiego/fileman">herunterladen</a>) steht unter der <a href="./LICENSE.txt">MIT-Lizenz</a></p>
 	</body>
 </html>
+
