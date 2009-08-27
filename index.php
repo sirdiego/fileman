@@ -92,10 +92,10 @@ if (is_dir(PATH.DATA)) {
 	}
 	closedir($handle);
 }
-if(isset($_GET["search"]) && preg_match("/[-_.A-Za-z0-9]*/", $_GET["search"])) 
+if(isset($_GET["search"])) 
 	$regex = $_GET["search"];
 else
-	$regex = ".*";
+	$regex = "";
 
 $asc = true;
 if(isset($_GET["desc"])) $asc = false;
@@ -109,7 +109,7 @@ if(isset($_GET["sort"])) {
 }
 
 foreach($list as $file) {
-	if(preg_match("/".$regex."/", $file['filename']) > 0) {
+	if(preg_match("/".$regex."/", strtolower($file['filename'])) > 0) {
 		$html = sprintf("\t\t\t<tr>\n\t\t\t\t<td><a href=\"data/%s\">%s <span>%s</span></a></td>\n\t\t\t\t<td>%.2f %s <span>%s</span></td>\n\t\t\t\t<td><a href=\"%s?delete=%s\">L&ouml;schen</a></td>\n\t\t\t</tr>\n",
 		$file['filename'], $file['filename'], $file['mimetype'], $file['size'], $file['size_extension'], date("y-m-d H:i", $file['modtime']), $_SERVER["PHP_SELF"], $file['filename']);
 		$files[] = $html;
@@ -134,9 +134,18 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
 			.free{color:green}
 			.locked{color:red}
 			fieldset{margin:1em 0}
-		//--></style>
+		--></style>
+		<script type="text/javascript">
+		function filterTable(text){
+			var tableContent=document.getElementsByTagName('table')[0];
+			for(var i=0;i<tableContent.rows.length;i++){
+				if(tableContent.rows[i].parentNode.tagName=="TBODY")
+					tableContent.rows[i].style.display=(new RegExp(text).test(tableContent.rows[i].innerHTML.replace(/<[^>]+>/g,"").toLowerCase())==false)?"none":"table-row";
+			}
+		}
+		</script>
 	</head>
-	<body>
+	<body onload="javascipt: document.getElementById('search').focus();">
 		<h1>fileman &lt;3</h1>
 		<ol>
 			<li><a href="<?=$_SERVER["PHP_SELF"]?>#files">Datei-Verzeichniss</a></li>
@@ -144,8 +153,9 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
 			<li>Aktionen sind <span class="<?=(isset($_SESSION["password"]) && $_SESSION["password"] == PASSWORD)?"free \">freigeschaltet":"locked\">gesperrt"?></span></li>
 			<li>
 				<form action="<?=$_SERVER["PHP_SELF"]?>#files" method="get">
-					<input type="text" name="search" id="search" value="<?=$regex?>" />
+					<input type="text" name="search" id="search" value="<?=$regex?>" onkeyup="javascript: filterTable(this.value);" />
 					<input type="submit" value="suchen" />
+					<input type="reset" value="löschen" />
 				</form>
 			</li>
 		</ol>
