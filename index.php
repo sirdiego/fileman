@@ -15,9 +15,9 @@ session_start();
 $files = $pastes = $list = array();
 $sizes = array('B','KiB','MiB','GiB','TiB');
 
-function update_log($filename, $action="upload") {
+function update_log($filename, $action="uploaded") {
 	$file = fopen(PATH.DATA."log.txt", "a");
-	fwrite($file, date("Y-m-d h:i")." - from:".$_SERVER["REMOTE_ADDR"]." - file:".$filename."\n");
+	fwrite($file, date("Y-m-d h:i")." - from:".$_SERVER["REMOTE_ADDR"]." - file:".$filename." - action:".$action."\n");
 	fclose($file);
 }
 
