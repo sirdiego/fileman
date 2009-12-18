@@ -15,7 +15,7 @@ session_start();
 $files = $pastes = $list = array();
 $sizes = array('B','KiB','MiB','GiB','TiB');
 
-function update_log($filename) {
+function update_log($filename, $action="upload") {
 	$file = fopen(PATH.DATA."log.txt", "a");
 	fwrite($file, date("Y-m-d h:i")." - from:".$_SERVER["REMOTE_ADDR"]." - file:".$filename."\n");
 	fclose($file);
@@ -67,6 +67,7 @@ if(isset($_POST["pasteit"]) && $_POST["text"] != "") {
 	header("Location: .".DATA.$name);
 }
 if (isset($_SESSION["password"]) && $_SESSION["password"] == PASSWORD && isset($_GET["delete"]) && is_file(PATH.DATA.$_GET["delete"])) {
+	update_log($_GET["delete"], "deleted");
 	unlink(PATH.DATA.$_GET["delete"]);
 }
 
