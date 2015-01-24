@@ -1,6 +1,7 @@
 {
     "name": "diego/fileman",
     "description": "A One-Click-Filehost that consists of just one file with a good interface for Nokia's InternetTablets or Apple's iPhones.",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
